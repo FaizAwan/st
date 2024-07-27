@@ -282,7 +282,7 @@ const AddAccount = () => {
                   <div className="copy-right-content text-right padding-top-30px">
                     <ul className="social-profile">
                       <li><a href="#"><i className="lab la-facebook-f" /></a></li>
-                      <li><a href="#"><i class="lab la-twitter" /></a></li>
+                      <li><a href="#"><i className="lab la-twitter" /></a></li>
                       <li><a href="#"><i className="lab la-instagram" /></a></li>
                       <li><a href="#"><i className="lab la-linkedin-in" /></a></li>
                     </ul>
