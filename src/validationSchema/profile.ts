@@ -5,7 +5,12 @@ import * as Yup from 'yup';
 const profileSchema = Yup.object({
     name: Yup.string().nullable(),
     photo: Yup.string().nullable(),
-    urdu_name: Yup.string().nullable()  // Add this field
+    urdu_name: Yup.string().nullable(),  // Add this field
+    address: Yup.string().nullable(),  // Add this field
+    city: Yup.string().nullable(),  // Add this field
+    whatsapp: Yup.string().nullable(),  // Add this field
+    status: Yup.string().nullable()  // Add this field
+    
 });
 
 export const useProfileValidation = () => useForm({
