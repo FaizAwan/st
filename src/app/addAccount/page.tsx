@@ -25,12 +25,19 @@ interface Bank {
   // Add other bank properties here
 }
 
+interface Product {
+  product_id: string;
+  qty: number;
+  price: number;
+  total: number;
+}
+
 const AddAccount = () => {
   useAuthentication();
   const router = useRouter();
   const { handleSubmit, register, formState: { errors } } = useProfileValidation();
   const [paymentMode, setPaymentMode] = useState('');
-  const [productTableData, setProductTableData] = useState([]);
+  const [productTableData, setProductTableData] = useState<Product[]>([]);
 
   const [banks, setBanks] = useState<Bank[]>([]);
   const [selectedBank, setSelectedBank] = useState('');
