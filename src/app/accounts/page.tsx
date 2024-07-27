@@ -183,7 +183,8 @@ const Accounts = () => {
                                 </div>
                                 <p className="msg-text">Ancillae delectus necessitatibus no eam</p>
                               </div>
-                            </div>{/* end msg-body */}
+                                  </div>{/* end msg-body */}
+                                  
                           </a>
                           <a href="#" className="list-group-item list-group-item-action">
                             <div className="msg-body d-flex align-items-center">
