@@ -19,6 +19,12 @@ interface Customer {
   [key: string]: any; // Add other customer properties here
 }
 
+interface Bank {
+  id: string;
+  name: string;
+  // Add other bank properties here
+}
+
 const AddAccount = () => {
   useAuthentication();
   const router = useRouter();
@@ -26,7 +32,7 @@ const AddAccount = () => {
   const [paymentMode, setPaymentMode] = useState('');
   const [productTableData, setProductTableData] = useState([]);
 
-  const [banks, setBanks] = useState([]);
+  const [banks, setBanks] = useState<Bank[]>([]);
   const [selectedBank, setSelectedBank] = useState('');
 
   const { handleSubmit: passwordHandleSubmit, register: registerPassword, formState: { errors: passwordErrors } } = useProfilePasswordValidation();
@@ -92,7 +98,7 @@ const AddAccount = () => {
           if (snapshot.exists()) {
             const data = snapshot.val();
             console.log('Fetched banks data:', data);
-            const banksList = Object.keys(data).map(key => data[key]);
+            const banksList: Bank[] = Object.keys(data).map(key => ({ id: key, ...data[key] }));
             setBanks(banksList);
           } else {
             console.log('No data available in the Banks path');
@@ -240,30 +246,103 @@ const AddAccount = () => {
                       <div className="form-box">
                         <div className="form-content contact-form-action">
                             <TreeView />
+                          <TabsComponent />
                         </div>
-                      </div>
-
-                      <div className="form-box">
-                        <div className="form-content contact-form-action">
-                            <TabsComponent />
-                        </div>
-                      </div>
-
-                    </div>
-
+                      </div>{/* end form-box */}
+                    </div>{/* end col-lg-3 */}
                     <div className="col-lg-9">
-                      <div className="form-box">
-                        <div className="form-content contact-form-action">
-                            <div className="card">
-                              <div style={{background: 'purple', padding: 10}} className="card-header mt-2">
-                                <h1 style={{color: '#fff'}} className="text-center">Account Ledger</h1>
+                        <div className="form-box">
+                            <div className="form-content contact-form-action">
+                              <div className="row">
+                                <div className="col-lg-12">
+                                  <div className="input-box">
+                                    <label className="label-text">Customer Name</label>
+                                    <div className="form-group">
+                                      <InputField type="text" name="customer_name" placeholder="Customer Name" {...register('customer_name', { required: true })} />
+                                      {errors.customer_name && <span className="error">Customer Name is required</span>}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="col-lg-12">
+                                  <div className="input-box">
+                                    <label className="label-text">Note</label>
+                                    <div className="form-group">
+                                      <InputField type="text" name="note" placeholder="Note" {...register('note', { required: true })} />
+                                      {errors.note && <span className="error">Note is required</span>}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="col-lg-12">
+                                  <div className="input-box">
+                                    <label className="label-text">Total Amount</label>
+                                    <div className="form-group">
+                                      <InputField type="text" name="total_amount" placeholder="Total Amount" {...register('total_amount', { required: true })} />
+                                      {errors.total_amount && <span className="error">Total Amount is required</span>}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="col-lg-12">
+                                  <div className="input-box">
+                                    <label className="label-text">Accounts Date</label>
+                                    <div className="form-group">
+                                      <InputField type="date" name="Accounts_date" placeholder="Accounts Date" {...register('Accounts_date', { required: true })} />
+                                      {errors.Accounts_date && <span className="error">Accounts Date is required</span>}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="col-lg-12">
+                                  <div className="input-box">
+                                    <label className="label-text">Payment Mode</label>
+                                    <div className="form-group">
+                                      <select className="form-control" value={paymentMode} onChange={handlePaymentModeChange}>
+                                        <option value="">Select Payment Mode</option>
+                                        <option value="cash">Cash</option>
+                                        <option value="online">Online</option>
+                                        <option value="cheque">Cheque</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                {paymentMode === 'online' && (
+                                  <div className="col-lg-12">
+                                    <div className="input-box">
+                                      <label className="label-text">Select Bank</label>
+                                      <div className="form-group">
+                                        <select className="form-control" value={selectedBank} onChange={(e) => setSelectedBank(e.target.value)}>
+                                          <option value="">Select Bank</option>
+                                          {banks.map((bank) => (
+                                            <option key={bank.id} value={bank.id}>{bank.name}</option>
+                                          ))}
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                                {paymentMode === 'cheque' && (
+                                  <div className="col-lg-12">
+                                    <div className="input-box">
+                                      <label className="label-text">Select Bank</label>
+                                      <div className="form-group">
+                                        <select className="form-control" value={selectedBank} onChange={(e) => setSelectedBank(e.target.value)}>
+                                          <option value="">Select Bank</option>
+                                          {banks.map((bank) => (
+                                            <option key={bank.id} value={bank.id}>{bank.name}</option>
+                                          ))}
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
-                              <div className="card-body">
-                                <h1>Accounts Table</h1>
+                              <div className="row">
+                                <div className="col-lg-12">
+                                  <div className="form-group text-center">
+                                    <SubmitButton text="Save" onClick={handleSubmit(submitForm)} />
+                                  </div>
+                                </div>
                               </div>
                             </div>
                         </div>
-                      </div>
                     </div>
                   </div>{/* end row */}
                 </div>{/* end container */}
