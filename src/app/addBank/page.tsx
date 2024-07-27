@@ -191,7 +191,7 @@ const AddBank = () => {
                                                         <div className="list-group drop-reveal-list">
                                                             <a href="#" className="list-group-item list-group-item-action">
                                                                 <div className="msg-body d-flex align-items-center">
-                                                                    <div className="icon-element flex-shrink-0 mr-3 ml-0"><img src="images/team8.jpg" alt="" /></div>
+                                                                    <div className="icon-element flex-shrink-0 mr-3 ml-0"><Image src="images/team8.jpg" alt="" /></div>
                                                                     <div className="msg-content w-100">
                                                                         <h3 className="title pb-1">Saqib Ahmad</h3>
                                                                         <p className="msg-text">Hi! How are you doing?</p>
@@ -200,7 +200,7 @@ const AddBank = () => {
                                                             </a>
                                                             <a href="#" className="list-group-item list-group-item-action">
                                                                 <div className="msg-body d-flex align-items-center">
-                                                                    <div className="icon-element flex-shrink-0 mr-3 ml-0"><img src="images/team9.jpg" alt="" /></div>
+                                                                    <div className="icon-element flex-shrink-0 mr-3 ml-0"><Image src="images/team9.jpg" alt="" /></div>
                                                                     <div className="msg-content w-100">
                                                                         <h3 className="title pb-1">Smith Kevin</h3>
                                                                         <p className="msg-text">I've finished it! See you so...</p>
@@ -209,7 +209,7 @@ const AddBank = () => {
                                                             </a>
                                                             <a href="#" className="list-group-item list-group-item-action">
                                                                 <div className="msg-body d-flex align-items-center">
-                                                                    <div className="icon-element flex-shrink-0 mr-3 ml-0"><img src="images/team10.jpg" alt="" /></div>
+                                                                    <div className="icon-element flex-shrink-0 mr-3 ml-0"><Image src="images/team10.jpg" alt="" /></div>
                                                                     <div className="msg-content w-100">
                                                                         <h3 className="title pb-1">John Ali</h3>
                                                                         <p className="msg-text">This is awesome</p>
@@ -218,7 +218,7 @@ const AddBank = () => {
                                                             </a>
                                                             <a href="#" className="list-group-item list-group-item-action">
                                                                 <div className="msg-body d-flex align-items-center">
-                                                                    <div className="icon-element flex-shrink-0 mr-3 ml-0"><img src="images/team11.jpg" alt="" /></div>
+                                                                    <div className="icon-element flex-shrink-0 mr-3 ml-0"><Image src="images/team11.jpg" alt="" /></div>
                                                                     <div className="msg-content w-100">
                                                                         <h3 className="title pb-1">Kamran Adil</h3>
                                                                         <p className="msg-text">Your idea is brilliant!</p>
@@ -227,7 +227,7 @@ const AddBank = () => {
                                                             </a>
                                                             <a href="#" className="list-group-item list-group-item-action">
                                                                 <div className="msg-body d-flex align-items-center">
-                                                                    <div className="icon-element flex-shrink-0 mr-3 ml-0"><img src="images/team12.jpg" alt="" /></div>
+                                                                    <div className="icon-element flex-shrink-0 mr-3 ml-0"><Image src="images/team12.jpg" alt="" /></div>
                                                                     <div className="msg-content w-100">
                                                                         <h3 className="title pb-1">Kevin Smith</h3>
                                                                         <p className="msg-text">Congrats bro!</p>
