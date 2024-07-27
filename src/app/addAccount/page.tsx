@@ -199,7 +199,11 @@ const AddAccount = () => {
         router.push('/Accounts');  // Redirect to the Accounts page
       } catch (e) {
         console.error("Error saving Accounts information:", e);
-        alert("Failed to save Accounts information " + e.message);
+        if (e instanceof Error) {
+          alert("Failed to save Accounts information " + e.message);
+        } else {
+          alert("Failed to save Accounts information");
+        }
       }
     } else {
       console.error("Form validation failed. Missing required fields.");
@@ -212,11 +216,15 @@ const AddAccount = () => {
         console.log("Password changed");
         setVisibility("");
       }).catch((e) => {
-        console.log("Failed to change password ", e.message);
+        if (e instanceof Error) {
+          console.log("Failed to change password ", e.message);
+        } else {
+          console.log("Failed to change password");
+        }
       });
     }
   };
-
+  
   return (
     <div>
       <section className="dashboard-area">
