@@ -12,6 +12,7 @@ import { useState } from "react";
 import { getDatabase, ref, push, set, get } from "firebase/database";
 
 const AddBank = () => {
+
   useAuthentication();
   const router = useRouter();
   const { handleSubmit, register, formState: { errors } } = useProfileValidation();
@@ -23,69 +24,72 @@ const AddBank = () => {
 
   const userInfo = user.user;
 
+const submitForm = async ({ name, city, whatsapp, urdu_name, address, status }: {
+  name?: string | null,
+  address?: string | null,
+  city?: string | null,
+  urdu_name?: string | null,
+  status?: string | null,
+  whatsapp?: string | null
+}) => {
+  if (name && city && whatsapp && address && urdu_name && status) {
+    const db = getDatabase();
+    const BankIdRef = ref(db, 'Bank_id_counter');
+    const accountIdRef = ref(db, 'account_id_counter');
+    try {
+      // Get the next Bank ID
+      const BankSnapshot = await get(BankIdRef);
+      const nextBankId = (BankSnapshot.val() || 0) + 1; // Increment Bank ID
+      // Get the next account ID
+      const accountSnapshot = await get(accountIdRef);
+      const nextAccountId = (accountSnapshot.val() || 0) + 1; // Increment account ID
+      const BankData = {
+        Bank_id: nextBankId,
+        name: name,
+        urdu_name: urdu_name,
+        address: address,
+        status: status,
+        city: city,
+        whatsapp: whatsapp
+      };
 
-  const submitForm = async ({ name, city, whatsapp, urdu_name, address, status }: {
-    name?: string | null,
-    address?: string | null,
-    city?: string | null,
-    urdu_name?: string | null,
-    status?:string | null,
-    whatsapp?: string | null }) => {
-    if (name && city && whatsapp && address && urdu_name && status) {
-      const db = getDatabase();
-      const BankIdRef = ref(db, 'Bank_id_counter');
-      const accountIdRef = ref(db, 'account_id_counter');
-      try {
-        // Get the next Bank ID
-        const BankSnapshot = await get(BankIdRef);
-        const nextBankId = (BankSnapshot.val() || 0) + 1; // Increment Bank ID
-        // Get the next account ID
-        const accountSnapshot = await get(accountIdRef);
-        const nextAccountId = (accountSnapshot.val() || 0) + 1; // Increment account ID
-        const BankData = {
-          Bank_id: nextBankId,
-          name: name,
-          urdu_name: urdu_name,
-          address: address,
-          status:status,
-          city: city,
-          whatsapp: whatsapp
-        };
-  
-        // Write to the Banks table
-        const BanksRef = ref(db, 'Banks/' + nextBankId);
-        await set(BanksRef, BankData);
-        
-        // Write to the accounts table (only account_id, Bank_id, type)
-        const accountsData = {
-          account_id: nextAccountId,
-          Bank_id: nextBankId,
-          type: 'Bank',
-          status: 'active',
-          name: name,
-          whatsapp: whatsapp,
-          address: address,
-          city:city
+      // Write to the Banks table
+      const BanksRef = ref(db, 'Banks/' + nextBankId);
+      await set(BanksRef, BankData);
+      
+      // Write to the accounts table (only account_id, Bank_id, type)
+      const accountsData = {
+        account_id: nextAccountId,
+        Bank_id: nextBankId,
+        type: 'Bank',
+        status: 'active',
+        name: name,
+        whatsapp: whatsapp,
+        address: address,
+        city: city
+      };
+      const accountsRef = ref(db, 'accounts/' + nextAccountId);
+      await set(accountsRef, accountsData);
 
-        };
-        const accountsRef = ref(db, 'accounts/' + nextAccountId);
-        await set(accountsRef, accountsData);
-  
-        // Update the Bank ID counter
-        await set(BankIdRef, nextBankId);
-        
-        // Update the account ID counter
-        await set(accountIdRef, nextAccountId);
-  
-        alert("Bank information saved");
-        setVisibility("");
-        router.push('/banks');  // Redirect to the Banks page
-      } catch (e) {
-        alert("Failed to save Bank information " + e.message);
+      // Update the Bank ID counter
+      await set(BankIdRef, nextBankId);
+      
+      // Update the account ID counter
+      await set(accountIdRef, nextAccountId);
+
+      alert("Bank information saved");
+      setVisibility("");
+      router.push('/banks');  // Redirect to the Banks page
+    } catch (e) {
+      if (e instanceof Error) {
+        alert("Failed to save Bank information: " + e.message);
+      } else {
+        alert("An unknown error occurred while saving Bank information.");
       }
     }
-  };
-  
+  }
+};
+
 
   const submitPasswordForm = ({ password }: { password?: string | null }) => {
     if (password) {
