@@ -14,6 +14,11 @@ import TabsComponent from "@/components/TabsComponents";
 import ProductTable from "@/components/ProductTable";
 import TreeView from "@/components/TreeView";
 
+interface Customer {
+  id: string;
+  [key: string]: any; // Add other customer properties here
+}
+
 const AddAccount = () => {
   useAuthentication();
   const router = useRouter();
@@ -29,30 +34,29 @@ const AddAccount = () => {
 
   const [visibleForm, setVisibility] = useState<any>();
   const [suppliers, setSuppliers] = useState<any[]>([]); // State to store suppliers
-  const [customers, setCustomers] = useState([]);
+  const [customers, setCustomers] = useState<Customer[]>([]); // State to store customers
 
   const userInfo = user.user;
 
-  
-    // Fetch customers from Firebase
-    useEffect(() => {
-      const fetchCustomers = async () => {
-        const db = getDatabase();
-        const customersRef = ref(db, 'customers');
-        try {
-          const snapshot = await get(customersRef);
-          if (snapshot.exists()) {
-            const data = snapshot.val();
-            const customersList = Object.keys(data).map(key => ({ id: key, ...data[key] }));
-            setCustomers(customersList);
-          }
-        } catch (error) {
-          console.error("Error fetching customers:", error);
+  // Fetch customers from Firebase
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      const db = getDatabase();
+      const customersRef = ref(db, 'customers');
+      try {
+        const snapshot = await get(customersRef);
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const customersList: Customer[] = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+          setCustomers(customersList);
         }
-      };
-  
-      fetchCustomers();
-    }, []);
+      } catch (error) {
+        console.error("Error fetching customers:", error);
+      }
+    };
+
+    fetchCustomers();
+  }, []);
 
   // Fetch suppliers from Firebase
   useEffect(() => {
@@ -105,11 +109,9 @@ const AddAccount = () => {
     fetchBanks();
   }, [paymentMode]);
 
-
   const handlePaymentModeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPaymentMode(event.target.value);
   };
-
 
   const submitForm = async ({
     Accounts_date,
@@ -131,7 +133,7 @@ const AddAccount = () => {
       note,
       total_amount
     });
-  
+
     if (Accounts_date && Accounts_id && customer_name && note && total_amount) {
       const db = getDatabase();
       const AccountsIdRef = ref(db, 'Accounts_id_counter');
@@ -140,7 +142,7 @@ const AddAccount = () => {
         const Accountsnapshot = await get(AccountsIdRef);
         const nextAccountsId = (Accountsnapshot.val() || 0) + 1; // Increment Accounts ID
         console.log("Next Accounts ID:", nextAccountsId);
-  
+
         const AccountsData = {
           Accounts_id: nextAccountsId,
           Accounts_date: Accounts_date,
@@ -150,19 +152,19 @@ const AddAccount = () => {
           total_amount: total_amount,
           products: productTableData  // Add product table data here
         };
-  
+
         console.log("Accounts data to be saved:", AccountsData);
-  
+
         // Write to the Accounts table
         const AccountsRef = ref(db, 'Accounts/' + nextAccountsId);
         await set(AccountsRef, AccountsData);
         // console.log("Accounts data saved successfully.");
-  
+
         // Update the Accounts ID counter
         await set(AccountsIdRef, nextAccountsId);
-  
+
         const AccountsProductRef = ref(db, 'AccountsProduct');
-  
+
         // Push each product entry to the AccountsProduct table with custom keys
         const productPromises = productTableData.map((product, index) => {
           const productEntry = {
@@ -176,9 +178,9 @@ const AddAccount = () => {
           const productKey = `${nextAccountsId}_${index + 1}`;
           return set(ref(db, `AccountsProduct/${productKey}`), productEntry);
         });
-  
+
         await Promise.all(productPromises);
-    
+
         alert("Accounts information saved");
         setVisibility("");
         router.push('/Accounts');  // Redirect to the Accounts page
@@ -190,11 +192,6 @@ const AddAccount = () => {
       console.error("Form validation failed. Missing required fields.");
     }
   };
-
-  
-
-
-
 
   const submitPasswordForm = ({ password }: { password?: string | null }) => {
     if (password) {
@@ -246,9 +243,6 @@ const AddAccount = () => {
                         </div>
                       </div>
 
-
-                      
-
                       <div className="form-box">
                         <div className="form-content contact-form-action">
                             <TabsComponent />
@@ -268,11 +262,9 @@ const AddAccount = () => {
                                 <h1>Accounts Table</h1>
                               </div>
                             </div>
-
                         </div>
                       </div>
                     </div>
-
                   </div>{/* end row */}
                 </div>{/* end container */}
               </section>{/* end listing-form */}
@@ -290,7 +282,7 @@ const AddAccount = () => {
                   <div className="copy-right-content text-right padding-top-30px">
                     <ul className="social-profile">
                       <li><a href="#"><i className="lab la-facebook-f" /></a></li>
-                      <li><a href="#"><i className="lab la-twitter" /></a></li>
+                      <li><a href="#"><i class="lab la-twitter" /></a></li>
                       <li><a href="#"><i className="lab la-instagram" /></a></li>
                       <li><a href="#"><i className="lab la-linkedin-in" /></a></li>
                     </ul>
