@@ -178,7 +178,7 @@ const AddProduct = () => {
                           <a href="#" className="list-group-item list-group-item-action">
                             <div className="msg-body d-flex align-items-center">
                               <div className="avatar flex-shrink-0 mr-3">
-                                <Image alt="tagLine"src="template/images/team8.jpg" />
+                                <Image alt="tagLine" src="template/images/team8.jpg" />
                               </div>
                               <div className="msg-content w-100">
                                 <div className="d-flex align-items-center justify-content-between">
@@ -192,7 +192,7 @@ const AddProduct = () => {
                           <a href="#" className="list-group-item list-group-item-action">
                             <div className="msg-body d-flex align-items-center">
                               <div className="avatar flex-shrink-0 mr-3">
-                                <Image alt="tagLine"src="template/images/team9.jpg" layout="fill" 
+                                <Image alt="tagLine" src="template/images/team9.jpg" layout="fill" 
         objectFit="cover"   />
                               </div>
                               <div className="msg-content w-100">
@@ -207,7 +207,7 @@ const AddProduct = () => {
                           <a href="#" className="list-group-item list-group-item-action">
                             <div className="msg-body d-flex align-items-center">
                               <div className="avatar flex-shrink-0 mr-3">
-                                <Image alt="tagLine"src="template/images/team10.jpg" />
+                                <Image alt="tagLine" src="template/images/team10.jpg" />
                               </div>
                               <div className="msg-content w-100">
                                 <div className="d-flex align-items-center justify-content-between">
@@ -221,7 +221,7 @@ const AddProduct = () => {
                           <a href="#" className="list-group-item list-group-item-action">
                             <div className="msg-body d-flex align-items-center">
                               <div className="avatar flex-shrink-0 mr-3">
-                                <Image alt="tagLine"src="template/images/team11.jpg" />
+                                <Image alt="tagLine" src="template/images/team11.jpg" />
                               </div>
                               <div className="msg-content w-100">
                                 <div className="d-flex align-items-center justify-content-between">
@@ -241,7 +241,7 @@ const AddProduct = () => {
                     <div className="dropdown">
                       <a href="#" className="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div className="d-flex align-items-center">
-                          <div className="avatar avatar-sm flex-shrink-0 mr-2"><Image alt="tagLine"src="template/images/team8.jpg"  /></div>
+                          <div className="avatar avatar-sm flex-shrink-0 mr-2"><Image alt="tagLine" src="template/images/team8.jpg"  /></div>
                           <span className="font-size-14 font-weight-bold">Royel Admin</span>
                         </div>
                       </a>
