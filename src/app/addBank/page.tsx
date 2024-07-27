@@ -16,7 +16,7 @@ const AddBank = () => {
   const router = useRouter();
   const { handleSubmit, register, formState: { errors } } = useProfileValidation();
 
-  const { handleSubmit: passwordHandleSubmit, register: registerPassword, formState: { errors: passwordErrors } } = profilePasswordValidation();
+  const { handleSubmit: passwordHandleSubmit, register: registerPassword, formState: { errors: passwordErrors } } = useProfilePasswordValidation();
   const { user }: any = AuthContext();
 
   const [visibleForm, setVisibility] = useState<any>();
