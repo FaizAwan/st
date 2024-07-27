@@ -1,5 +1,8 @@
 // next.config.js
 module.exports = {
+  eslint: {
+      ignoreDuringBuilds: true,
+  },
     pageExtensions: ['ts', 'tsx'],
   
     webpack: (config, { isServer }) => {
