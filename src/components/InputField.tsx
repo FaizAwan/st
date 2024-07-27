@@ -1,21 +1,24 @@
-import { InputFieldT } from "@/types/FormTypes"
+// InputField.tsx
+import React from 'react';
 
-const InputField = ({type, name, placeholder,label, register, error}:InputFieldT) => {
-    return (
+interface InputFieldProps {
+  type: string;
+  name: string;
+  placeholder: string;
+  label?: string;
+  register?: any; // Adjust type as needed
+  error?: any;    // Adjust type as needed
+  [key: string]: any;
+}
 
-<div className="input-box">
-  <label className="label-text">{label}</label>
-  <div className="form-group">
-    <span className="la la-user form-icon" />
-    <input {...register(name)} className="form-control"  type={type}
-                name={name} 
-                autoComplete="off"
-                placeholder={placeholder} 
-                id={`field_${name}`}  />
-                { error && <span className=" text-red-500 py-1">{error.message}</span> }
-  </div>
-</div>
-    )
+const InputField: React.FC<InputFieldProps> = ({ type, name, placeholder, label, register, error, ...props }) => {
+  return (
+    <div>
+      {label && <label htmlFor={name}>{label}</label>}
+      <input type={type} name={name} placeholder={placeholder} {...register && register(name)} {...props} />
+      {error && <span className="error">{error.message}</span>}
+    </div>
+  );
 };
 
 export default InputField;
