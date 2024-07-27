@@ -1,0 +1,25 @@
+/* TreeView.module.css */
+.caret {
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+  }
+  
+  .caret::before {
+    content: "\25B6"; /* Right-pointing triangle */
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  
+  .caret-down::before {
+    transform: rotate(90deg); /* Down-pointing triangle */
+  }
+  
+  .nested {
+    display: none;
+  }
+  
+  .active {
+    display: block;
+  }
+  

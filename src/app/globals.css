@@ -1,0 +1,125 @@
+/* src/app/globals.css */
+@import url('/template/css/bootstrap.min.css');
+@import url('/template/css/bootstrap-select.min.css');
+@import url('/template/css/line-awesome.css');
+@import url('/template/css/owl.carousel.min.css');
+@import url('/template/css/owl.theme.default.min.css');
+@import url('/template/css/jquery.fancybox.min.css');
+@import url('/template/css/daterangepicker.css');
+@import url('/template/css/animate.min.css');
+@import url('/template/css/animated-headline.css');
+@import url('/template/css/jquery-ui.css');
+@import url('/template/css/flag-icon.min.css');
+@import url('/template/css/style.css');
+
+
+body {
+  color: red;
+  /* background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb)); */
+}
+
+
+.dashboard-main-content{
+  background:#0d233e;
+}
+
+.label-text{
+  font-size:21px !important;
+}
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+
+#myUL > li > ul > li {
+  padding-left: 20px !important;
+}
+
+
+#myUL > li > ul > li > ul > li {
+  padding-left: 20px !important;
+}
+
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.caret-down::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */
+  transform: rotate(90deg);  
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+.project-tab {
+    padding: 10%;
+    margin-top: -8%;
+}
+.project-tab #tabs{
+    background: #007b5e;
+    color: #eee;
+}
+.project-tab #tabs h6.section-title{
+    color: #eee;
+}
+.project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #0062cc;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    font-weight: bold;
+}
+.project-tab .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #0062cc;
+    font-size: 16px;
+    font-weight: 600;
+}
+.project-tab .nav-link:hover {
+    border: none;
+}
+.project-tab thead{
+    background: #f3f3f3;
+    color: #333;
+}
+.project-tab a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
